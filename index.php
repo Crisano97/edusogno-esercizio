@@ -1,3 +1,7 @@
+<?php 
+    include_once __DIR__ . "/assets/db/db.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,8 +18,26 @@
         <img class="logo" src="./assets/images/logo-edusogno.png" alt="edusogno-logo">
     </header>
     <main>
+        <h1 class="t-center">Hai giá un account?</h1>
         <div class="container">
-            <form action="">
+        <form action="">
+                <div class="input-container">
+                    <label class="d-block" for="email">Inserici l'email</label>
+                    <input class="d-block custom-input" type="email" name="email" id="email" placeholder="name@example.com">
+                </div>
+                <div class="input-container">
+                    <label class="d-block" for="password">Inserici la password</label>
+                    <input class="d-block custom-input" type="text" name="password" id="password" placeholder="Scrivila qui">
+                </div>
+                <div class="button-container">
+                    <button class="btn" type="submit">Accedi</button>
+                </div>
+                <div class="link-container">
+                    <a href="#">Non hai ancora un profilo? <b>Registrati</b></a>
+                </div>
+            </form>
+            
+            <!-- <form action="">
                 <div class="input-container">
                     <label class="d-block" for="name">Inserici il nome</label>
                     <input class="d-block custom-input" type="text" name="name" id="name" placeholder="Mario">
@@ -38,7 +60,7 @@
                 <div class="link-container">
                     <a href="#">Hai giá un account? <b>Accedi</b></a>
                 </div>
-            </form>
+            </form> -->
         </div>
     </main>
 </body>
