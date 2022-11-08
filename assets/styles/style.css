@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    padding-left: 2rem;
+    border-bottom: 2px solid blue;
+}
+.logo{
+    width: 5rem;
+}
+main{
+    padding: 3rem;
+}
+.container{
+    width: 50%;
+    margin: 0 auto;
+    padding: 2rem;
+    /* text-align: center; */
+    border: 1px solid blue;
+    border-radius: 10px;
+}
+.input-container{
+    margin-top: 2rem;
+}
+.d-block{
+    display: block;
+}
+.custom-input{
+    margin: 1rem 0;
+    padding: 0.3rem 0;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid grey;
+}
+.custom-input::placeholder{
+    color: gray;
+}
+.btn{
+    padding: 0.5rem 0;
+    width: 100%;
+    color: white;
+    background-color: blue;
+    border: none;
+    border-radius: 5px;
+}
+.link-container{
+    margin-top: 1rem;
+    text-align: center;
+}
