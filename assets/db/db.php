@@ -16,9 +16,9 @@ if ($connection && $connection->connect_error){
 }
 
 // REGISTRATON VARIABLES
-// $firstName = ""; 
-// $lastName = ""; 
-// $email = ""; 
+// $firstName = "";
+// $lastName = "";
+$email = "";
 // $password = "";
 
 //LOGIN ARRAYS
@@ -27,44 +27,59 @@ $events = [];
 
 //USER LOGIN
 if(isset($_POST['login'])){
-$email = $_POST['email'];
-$password = $_POST['password'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-//EMAIL CHECK
-if (strlen(trim($email)) == 0) {
-    $errors['email'] = 'Non hai inserito l\'email';
-} else if (strlen(trim($email)) > 255){
-    $errors['email'] = 'L\'email inserita é troppo lunga';
-} elseif (strpos($email, '@') == false) {
-    $errors['email'] = 'Inserisci una email valida.';
-}
-
-// CHECK PASSWORD
-if (strlen(trim($password)) == 0) {
-    $errors['password'] = 'Devi inserire una password!';
-}
-
-// var_dump($errors);
-//LOGIN AUTH
-if(count($errors) == 0){
-    $sql = "SELECT * FROM `utenti` WHERE `email`=? AND `password`=?";
-    $userQuery = $connection->prepare($sql);
-    $userQuery->bind_param('ss', $email, $password);
-    $userQuery->execute();
-    $result = $userQuery->get_result();
-    if($result && $result->num_rows > 0){
-        while($row = $result->fetch_assoc()){
-            $_SESSION['user'] = $row['nome'];
-            $_SESSION['email'] = $row['email'];
-            $_SESSION['success'] = 'Logged in';
-            header('Location: login.php');
-        } 
-        
-    } else if ($result) {
-        $_SESSION['message'] = 'Invalid email or password.';
+    //EMAIL CHECK
+    if (strlen(trim($email)) == 0) {
+        $errors['email'] = 'Non hai inserito l\'email';
+    } else if (strlen(trim($email)) > 255){
+        $errors['email'] = 'L\'email inserita é troppo lunga';
+    } elseif (strpos($email, '@') == false) {
+        $errors['email'] = 'Inserisci una email valida.';
     }
-} else {
-    echo 'errori';
+
+    // CHECK PASSWORD
+    if (strlen(trim($password)) == 0) {
+        $errors['password'] = 'Devi inserire una password!';
+    }
+
+    // var_dump($errors);
+    //LOGIN AUTH
+    if(count($errors) == 0){
+        $sql = "SELECT * FROM `utenti` WHERE `email`=? AND `password`=?";
+        $userQuery = $connection->prepare($sql);
+        $userQuery->bind_param('ss', $email, $password);
+        $userQuery->execute();
+        $result = $userQuery->get_result();
+        if($result && $result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                $_SESSION['user'] = $row['nome'];
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['success'] = 'Logged in';
+                header('Location: login.php');
+            }
+
+        } else if ($result) {
+            $_SESSION['message'] = 'Invalid email or password.';
+        }
+    } else {
+        echo 'errori';
+    }
+}
+//USER EVENTS
+if(isset($_SESSION['email'])){
+    $email = $_SESSION['email'];
+    $eventsQuery = "SELECT * FROM `eventi` WHERE `attendees` LIKE '%$email%'";
+    $result = $connection->query($eventsQuery);
+    if($result && $result->num_rows > 0){
+        $events = array();
+        while ($row = $result->fetch_assoc()){
+            array_push($events, $row);
+            // var_dump($events);
+        }
+    }
+    // var_dump($events);
 }
 
 //MIGRATION
@@ -124,5 +139,4 @@ if(count($errors) == 0){
 // $connection->close();
 
 
-    
-}
+

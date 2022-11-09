@@ -25,10 +25,24 @@
                     <?php echo $_SESSION['user'] ; ?>
                 </span>
                 <span>Questi sono i tuoi eventi:</span>
+                <?php if(count($events) > 0) :  ?>
+                    <?php foreach($events as $event) : ; ?>
+                        <div class="event-container">
+                            <h2>
+                                <?php echo $event['nome_evento'] ; ?>
+                            </h2>
+                            <p>
+                                <?php echo $event['data_evento'] ; ?>
+                            </p>
+                        </div>
+                    <?php endforeach; ?>
+                <? else : ?>
+                    <span>Non hai eventi</span>
+                <? endif ; ?>
             <?php else : ; ?>
                 <span>BENVENUTO</span>
                 <a href="login.php">LOGIN</a>
-                <a href="register.php">REGISTER</a>
+                <a href="register.php">REGISTER</a>  
             <?php endif ?>
         </div>
     </main>
