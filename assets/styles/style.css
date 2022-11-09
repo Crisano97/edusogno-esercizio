@@ -4,8 +4,11 @@
     box-sizing: border-box;
 }
 header{
-    padding-left: 2rem;
+    padding: 0 2rem;
     border-bottom: 2px solid blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .logo{
     width: 5rem;
@@ -53,4 +56,26 @@ main{
 .link-container{
     margin-top: 1rem;
     text-align: center;
+}
+
+.inner-container{
+    text-align: center;
+    /* background-color: gray; */
+    padding: 2rem;
+    line-height: 2rem;
+}
+div.cards{
+    padding: 2rem 0;
+    display: flex;
+    justify-content: space-around;
+}
+.event-container{
+    border: 1px solid blue;
+    border-radius: 10px;
+    padding: 1.2rem;
+    line-height: 2rem;
+}
+
+.t-light{
+    color: lightgray;
 }

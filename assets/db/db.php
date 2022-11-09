@@ -57,7 +57,7 @@ if(isset($_POST['login'])){
                 $_SESSION['user'] = $row['nome'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['success'] = 'Logged in';
-                header('Location: login.php');
+                header('Location: index.php');
             }
 
         } else if ($result) {
