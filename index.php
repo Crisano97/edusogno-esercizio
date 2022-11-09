@@ -14,53 +14,19 @@
 </head>
 
 <body>
-    <header>
-        <img class="logo" src="./assets/images/logo-edusogno.png" alt="edusogno-logo">
-    </header>
+    <?php require('header.php') ; ?>
     <main>
-        <h1 class="t-center">Hai giá un account?</h1>
         <div class="container">
-        <form action="">
-                <div class="input-container">
-                    <label class="d-block" for="email">Inserici l'email</label>
-                    <input class="d-block custom-input" type="email" name="email" id="email" placeholder="name@example.com">
-                </div>
-                <div class="input-container">
-                    <label class="d-block" for="password">Inserici la password</label>
-                    <input class="d-block custom-input" type="text" name="password" id="password" placeholder="Scrivila qui">
-                </div>
-                <div class="button-container">
-                    <button class="btn" type="submit">Accedi</button>
-                </div>
-                <div class="link-container">
-                    <a href="#">Non hai ancora un profilo? <b>Registrati</b></a>
-                </div>
-            </form>
-            
-            <!-- <form action="">
-                <div class="input-container">
-                    <label class="d-block" for="name">Inserici il nome</label>
-                    <input class="d-block custom-input" type="text" name="name" id="name" placeholder="Mario">
-                </div>
-                <div class="input-container">
-                    <label class="d-block" for="surname">Inserici il cognome</label>
-                    <input class="d-block custom-input" type="text" name="surname" id="surname" placeholder="Rossi">
-                </div>
-                <div class="input-container">
-                    <label class="d-block" for="email">Inserici l'email</label>
-                    <input class="d-block custom-input" type="email" name="email" id="email" placeholder="name@example.com">
-                </div>
-                <div class="input-container">
-                    <label class="d-block" for="password">Inserici la password</label>
-                    <input class="d-block custom-input" type="text" name="password" id="password" placeholder="Scrivila qui">
-                </div>
-                <div class="button-container">
-                    <button class="btn" type="submit">REGISTRATI</button>
-                </div>
-                <div class="link-container">
-                    <a href="#">Hai giá un account? <b>Accedi</b></a>
-                </div>
-            </form> -->
+            <?php if (isset($_SESSION['success'])): ;?>
+                <span class="d-block t-center">
+                    <?php echo $_SESSION['user'] ; ?>
+                </span>
+                <span>Questi sono i tuoi eventi:</span>
+            <?php else : ; ?>
+                <span>BENVENUTO</span>
+                <a href="login.php">LOGIN</a>
+                <a href="register.php">REGISTER</a>
+            <?php endif ?>
         </div>
     </main>
 </body>
