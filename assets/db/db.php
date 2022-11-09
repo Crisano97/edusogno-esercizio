@@ -44,7 +44,7 @@ if (strlen(trim($password)) == 0) {
     $errors['password'] = 'Devi inserire una password!';
 }
 
-var_dump($errors);
+// var_dump($errors);
 //LOGIN AUTH
 if(count($errors) == 0){
     $sql = "SELECT * FROM `utenti` WHERE `email`=? AND `password`=?";

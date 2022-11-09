@@ -18,6 +18,9 @@
     <main>
         <div class="container">
             <?php if (isset($_SESSION['success'])): ;?>
+                <span>
+                    <a href="logout.php">LOGOUT</a>
+                </span>
                 <span class="d-block t-center">
                     <?php echo $_SESSION['user'] ; ?>
                 </span>
