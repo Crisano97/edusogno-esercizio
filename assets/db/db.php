@@ -76,8 +76,9 @@ if (isset($_POST['register'])) {
             $newUserQuery->execute();
             $_SESSION['message'] = 'Registrazione avvenuta con successo';
             $_SESSION['userRegistered'] = true;
-            $_SESSION['success'] = 'Logged in';
+            $_SESSION['success'] = 'Registered';
             // header('Location: register.php');
+            session_destroy();
         } else {
             echo 'errori';
         }
@@ -115,7 +116,8 @@ if(isset($_POST['login'])){
             while($row = $result->fetch_assoc()){
                 $_SESSION['user'] = $row['nome'];
                 $_SESSION['email'] = $row['email'];
-                session_destroy();
+                $_SESSION['success'] = 'Logged in';
+                header('Location: index.php');
             }
 
         } else if ($result) {
