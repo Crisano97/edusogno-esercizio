@@ -10,10 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="./assets/styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> 
+    <script src="./assets/js/script.js" defer></script>
 </head>
 <body>
     <?php require('header.php') ; ?>
     <main>
+        <h1 class="t-center">Crea il tuo account</h1>
         <div class="container">
             <?php if(isset($_SESSION['userRegistered']) && $_SESSION['userRegistered']): ; ?>
                 <p>
@@ -26,7 +30,7 @@
                 </p>
             <?php else : ; ?>
                 <?php if(isset($errors['emailAlreadyExist'])){ ; ?>
-                    <p>
+                    <p class="danger-2">
                         <?php echo $errors['emailAlreadyExist']; ?>
                     </p>
                 <?php } ; ?>
@@ -34,16 +38,17 @@
                     <div class="input-container">
                         <label class="d-block" for="name">Inserici il nome</label>
                         <?php if(isset($errors['name'])) {;?>
-                            <span>
+                            <span class="danger">
                                 <?php echo $errors['name'];?>
                             </span>
                         <?php } ?>
                         <input class="d-block custom-input" type="text" name="name" id="name" placeholder="Mario">
+                        
                     </div>
                     <div class="input-container">
                         <label class="d-block" for="surname">Inserici il cognome</label>
                         <?php if(isset($errors['surname'])) {;?>
-                            <span>
+                            <span class="danger">
                                 <?php echo $errors['surname'];?>
                             </span>
                         <?php } ?>
@@ -52,7 +57,7 @@
                     <div class="input-container">
                         <label class="d-block" for="email">Inserici l'email</label>
                         <?php if(isset($errors['email'])) {;?>
-                            <span>
+                            <span class="danger">
                                 <?php echo $errors['email'];?>
                             </span>
                         <?php } ?>
@@ -61,11 +66,12 @@
                     <div class="input-container">
                         <label class="d-block" for="password">Inserici la password</label>
                         <?php if(isset($errors['password'])) {;?>
-                            <span>
+                            <span class="danger">
                                 <?php echo $errors['password'];?>
                             </span>
                         <?php } ?>
-                        <input class="d-block custom-input" type="text" name="password" id="password" placeholder="Scrivila qui">
+                        <input class="d-block custom-input" type="password" name="password" id="password" placeholder="Scrivila qui">
+                        <i class="fa-solid fa-eye icon" id="passwordToggler"></i>
                     </div>
                     <div class="button-container">
                         <button class="btn" type="submit" name="register">REGISTRATI</button>

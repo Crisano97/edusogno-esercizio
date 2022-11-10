@@ -79,8 +79,6 @@ if (isset($_POST['register'])) {
             $_SESSION['success'] = 'Registered';
             // header('Location: register.php');
             session_destroy();
-        } else {
-            echo 'errori';
         }
     }
 }
@@ -121,10 +119,8 @@ if(isset($_POST['login'])){
             }
 
         } else if ($result) {
-            $_SESSION['message'] = 'Invalid email or password.';
+            $_SESSION['message'] = 'Email o password erraate';
         }
-    } else {
-        echo 'errori';
     }
 }
 //USER EVENTS

@@ -5,32 +5,42 @@
 }
 header{
     padding: 0 2rem;
-    border-bottom: 2px solid blue;
+    border-bottom: 2px;
+    box-shadow: 0px 4px 28px 0px #0057ff;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
 }
 .logo{
     width: 5rem;
+}
+body{
+    background-color: #d9e5f3;
+    font-family: 'Roboto', sans-serif;
 }
 main{
     padding: 3rem;
 }
 .t-center{
     text-align: center;
-    color: blue;
+    color: #2C5486;
     margin: 2rem 0;
 }
 .container{
-    width: 50%;
-    margin: 0 auto;
+    position: relative;
+    /* width: 50%;
+    margin: 0 auto; */
     padding: 2rem;
-    /* text-align: center; */
-    border: 1px solid blue;
-    border-radius: 10px;
+    background-color: white;
+    border: 2px solid #0057ff;
+    border-radius: 20px;
 }
 .input-container{
     margin-top: 2rem;
+    position: relative;
 }
 .d-block{
     display: block;
@@ -49,9 +59,11 @@ main{
     padding: 0.5rem 0;
     width: 100%;
     color: white;
-    background-color: blue;
+    background-color: #0057ff;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-size: 1.7rem;
 }
 .link-container{
     margin-top: 1rem;
@@ -68,14 +80,68 @@ div.cards{
     padding: 2rem 0;
     display: flex;
     justify-content: space-around;
+    flex-direction: column;
 }
 .event-container{
-    border: 1px solid blue;
+    margin-top: 1.5rem;
+    text-align: center;
+    border: 1px solid black;
     border-radius: 10px;
     padding: 1.2rem;
     line-height: 2rem;
+    background-color: white;
 }
 
 .t-light{
     color: lightgray;
+}
+
+.icon{
+    position: absolute;
+    top: 2.5rem;
+    right: 0.5rem;
+    color: #0057ff;
+}
+
+.danger{
+    position: absolute;
+    right: 2rem;
+    top: 0;
+    padding: .3rem;
+    background-color:red;
+    color: white;
+    border-radius: 10px;
+}
+
+.danger-2{
+    position: absolute;
+    top: 1.2rem;
+    padding: .3rem;
+    background-color:red;
+    color: white;
+    border-radius: 10px;
+}
+
+/* MEDIAQUERY */
+
+@media screen and (min-width:811px) {
+    div.container{
+        width: 70%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width:500px) {
+    div.cards{
+        flex-direction: row;
+    }
+    div.event-container{
+        width: calc(50% - 1.5rem);
+    }
+}
+@media screen and (min-width:960px) {
+
+    div.event-container{
+        width: calc(40% - 1.5rem);
+    }
 }

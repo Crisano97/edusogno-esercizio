@@ -16,46 +16,46 @@
 <body>
     <?php require('header.php') ; ?>
     <main>
-        <div class="container">
-            <?php if (isset($_SESSION['success'])): ;?>
-                <!-- <span>
-                    <a href="logout.php">LOGOUT</a>
-                </span> -->
-                <h1 class="t-center">
-                    Ciao
-                    <?php echo $_SESSION['user'] ; ?>,
-                    <span>Questi sono i tuoi eventi:</span>
-                </h1>
-                <div class="cards">
-                    <?php if(count($events) > 0) :  ?>
-                        <?php foreach($events as $event) : ; ?>
-                            <div class="event-container">
-                                <h2>
-                                    <?php echo $event['nome_evento'] ; ?>
-                                </h2>
-                                <span class="t-light">
-                                    <?php echo $event['data_evento'] ; ?>
-                                </span>
-                                <button class="btn">JOIN</button>
-                            </div>
-                        <?php endforeach; ?>
-                    <? else : ?>
-                        <span>Non hai eventi</span>
-                    <? endif ; ?>
-                </div>
-            <?php else : ; ?>
-                <h1 class="t-center">BENVENUTO!</h1>
-                <div class="inner-container">
-                    <h4>Effettua il Login per accedere ai tuoi eventi</h4>
-                    <a href="login.php">LOGIN</a>
-                </div>
-                <div class="inner-container">
-                    <h4>Oppure Registrati</h4>
-                    <a href="register.php">REGISTER</a>
-                </div>
-                  
-            <?php endif ?>
-        </div>
+        <?php if (isset($_SESSION['success'])): ;?>
+            <!-- <span>
+                <a href="logout.php">LOGOUT</a>
+            </span> -->
+            <h1 class="t-center">
+                Ciao
+                <?php echo $_SESSION['user'] ; ?>,
+                <span>Questi sono i tuoi eventi:</span>
+            </h1>
+            <div class="cards">
+                <?php if(count($events) > 0) :  ?>
+                    <?php foreach($events as $event) : ; ?>
+                        <div class="event-container">
+                            <h2>
+                                <?php echo $event['nome_evento'] ; ?>
+                            </h2>
+                            <span class="t-light">
+                                <?php echo $event['data_evento'] ; ?>
+                            </span>
+                            <button class="btn">JOIN</button>
+                        </div>
+                    <?php endforeach; ?>
+                <? else : ?>
+                    <span>Non hai eventi</span>
+                <? endif ; ?>
+            </div>
+        <?php else : ; ?>
+            <div class="container">
+            <h1 class="t-center">BENVENUTO!</h1>
+            <div class="inner-container">
+                <h4>Effettua il Login per accedere ai tuoi eventi</h4>
+                <a href="login.php">LOGIN</a>
+            </div>
+            <div class="inner-container">
+                <h4>Oppure Registrati</h4>
+                <a href="register.php">REGISTER</a>
+            </div>
+            </div>
+              
+        <?php endif ?>
     </main>
 </body>
 
