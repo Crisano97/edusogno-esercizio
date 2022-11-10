@@ -16,14 +16,73 @@ if ($connection && $connection->connect_error){
 }
 
 // REGISTRATON VARIABLES
-// $firstName = "";
-// $lastName = "";
+$firstName = "";
+$lastName = "";
 $email = "";
-// $password = "";
+$password = "";
 
 //LOGIN ARRAYS
 $errors = [];
 $events = [];
+
+//USER REGISTRATION
+if (isset($_POST['register'])) {
+    $firstName = $_POST['name'];
+    $lastName = $_POST['surname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+    //INPUT VALIDATION
+    if(strlen($firstName) == 0){
+        $errors['name'] = 'Il nome é obbligatorio';
+    } elseif (strlen($firstName) > 45) {
+        $errors['name'] = 'Il nome puó essere composto da un massimo di 45 caratteri';
+    }
+
+    if(strlen($lastName) == 0){
+        $errors['surname'] = 'Il cognome é obbligatorio';
+    } elseif (strlen($lastName) > 45) {
+        $errors['surname'] = 'Il cognome puó essere composto da un massimo di 45 caratteri';
+    }
+
+    if (strlen(trim($email)) == 0) {
+        $errors['email'] = 'Non hai inserito l\'email!';
+    } elseif (strlen(trim($email)) > 45) {
+        $errors['email'] = 'L\'email inserita è troppo lunga! Usa un massimo di 45 caratteri.';
+    } elseif (strpos($email, '@') == false) {
+        $errors['email'] = 'Inserisci una email valida.';
+    }
+
+    if (strlen(trim($password)) == 0) {
+        $errors['password'] = 'Devi inserire una password!';
+    } elseif (strlen(trim($password)) > 45) {
+        $errors['password'] = 'La password inserita è troppo lunga! Usa un massimo di 45 caratteri.';
+    }
+
+    if (count($errors) == 0) {
+        $sql = "SELECT * FROM `utenti` WHERE `email`=?";
+        $userQuery = $connection->prepare($sql);
+        $userQuery->bind_param('s', $email);
+        $userQuery->execute();
+        $result = $userQuery->get_result();
+
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $errors['emailAlreadyExist'] = 'L\'email inserita é giá in uso';
+            }
+        } elseif ($result && count($errors) == 0){
+            $newUserQuery = $connection->prepare("INSERT INTO `utenti` (`nome`, `cognome`, `email`, `password`) VALUES (?, ?, ?, ?)");
+            $newUserQuery->bind_param("ssss", $firstName, $lastName, $email, $password);
+            $newUserQuery->execute();
+            $_SESSION['message'] = 'Registrazione avvenuta con successo';
+            $_SESSION['userRegistered'] = true;
+            $_SESSION['success'] = 'Logged in';
+            // header('Location: register.php');
+        } else {
+            echo 'errori';
+        }
+    }
+}
 
 //USER LOGIN
 if(isset($_POST['login'])){
@@ -56,8 +115,7 @@ if(isset($_POST['login'])){
             while($row = $result->fetch_assoc()){
                 $_SESSION['user'] = $row['nome'];
                 $_SESSION['email'] = $row['email'];
-                $_SESSION['success'] = 'Logged in';
-                header('Location: index.php');
+                session_destroy();
             }
 
         } else if ($result) {
